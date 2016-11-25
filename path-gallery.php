@@ -1,13 +1,14 @@
 <?php
 /*
 Plugin Name: Path Gallery
-Plugin URI: http://profglobal.ru/fast-shop/
+Plugin URI: https://github.com/karakushan/path-gallery
 Description:  The plugin will help in the creation of any online store without changing your template.
 Version: 1.0.0
 Author: Vitaliy Karakushan
-Author URI: http://profglobal.ru/
+Author URI: https://github.com/karakushan
 License: GPL2
 Domain: path-gallery
+Domain Path: languages
 */
 /*
 Copyright 2016 Vitaliy Karakushan  (email : karakushan@gmail.com)
@@ -26,51 +27,45 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-require_once('BFI_Thumb.php');
- @define( BFITHUMB_UPLOAD_DIR,'shop');
+if ( ! defined( 'ABSPATH' ) ) exit;
 
-/**
- * @param $path - относительный путь к папке с файлами
- * @return array
- */
-function path_gallery_files($path)
-{
+// устанавливаем константы
+@define('BFITHUMB_UPLOAD_DIR','shop');
+@define('PH_PLUGIN_DIR', plugin_dir_path(__FILE__));
+@define('PH_PLUGIN_VERSION', '1.0');
 
-    // результат выполнения функции is_dir кэшируется,
-    // поэтому сбрасываем кэш.
-    clearstatcache();
-    $full_path=$_SERVER['DOCUMENT_ROOT'].$path;
-    if (empty($path) || !file_exists($full_path)) return array();
-    $files = scandir($full_path);
-    for($i = 0, $length = count($files); $i < $length; $i++)
+// подключаем файлы
+require_once 'functions/functions.php';
+// подключаем библиотеки
+require_once 'lib/BFI_Thumb.php';
+// подключаем классы
+require_once 'classes/Path_Gallery_Settings.php';
+require_once 'classes/Path_Gallery_Posts.php';
+
+add_action( 'plugins_loaded', array( 'Path_Gallery_Init', 'get_instance' ) );
+/*register_activation_hook( __FILE__, array( 'Ihoster_Init', 'activate' ) );
+register_deactivation_hook( __FILE__, array( 'Ihoster_Init', 'deactivate' ) );*/
+
+if (!class_exists('Path_Gallery_Init')) {
+   /**
+   * Path_Gallery_Init
+   */
+   class Path_Gallery_Init
+   {
+    private static $instance = null;
+    function __construct()
     {
-        // Исключаем из списка директории и не изображения:
-        if( is_dir( $full_path.$files[$i]) || !checkValidFormat($files[$i], array('jpg','jpeg','png','gif','bmp','svg')) || strpos($files[$i],'thumb')){
-            unset($files[$i]);
-        }else{
-            $files[$i]=$path.$files[$i];
-        }
-    }
-    return $files; //array
+       new Path_Gallery_Settings;
+       new Path_Gallery_Posts;
+       add_action( 'plugins_loaded', array( $this, 'get_instance' ) );
+   }
+   public static function get_instance() {
+    if ( ! isset( self::$instance ) )
+        self::$instance = new self;
+    load_plugin_textdomain('path-gallery',false, dirname( plugin_basename( __FILE__ ) ) . '/languages/');
+    return self::$instance;
 }
-
-/**
-* Проверка корректности формата файла
-* 
-* @param string $file - имя файла или путь до файла
-* @param array $validFormat - массив с корректными форматами
-*
-* @return boolean - результат проверки
-*/
-function checkValidFormat($file, $validFormat){
-    $file_el=explode(".",$file);
-    $format = end($file_el);
-    if(in_array(strtolower($format), $validFormat)){
-        return true;
-    }
-    return false;
 }
-
-
-
+}
+new Path_Gallery_Init;
 
