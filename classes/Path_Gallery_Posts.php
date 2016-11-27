@@ -33,29 +33,10 @@ class Path_Gallery_Posts
 		// Используем nonce для верификации
 		wp_nonce_field( plugin_basename(__FILE__), 'path_gallery_box_nonce' );
 		$gallery_path=get_post_meta($post->ID,'gallery_path',1);
+		$image_data=get_post_meta($post->ID,'image_data',0);
+		$image_data=!empty($image_data)?$image_data[0]:array();
 		$images=path_gallery_files($gallery_path);
-
 		?>
-		<style type="text/css">
-			.path-gallery-metabox label{
-				width: 257px;
-				float: left;
-				line-height: 25px;
-				padding: 0;
-			}
-			ul.path-gallery-images li {
-				display: inline-block;
-				padding: 12px;
-				border: 1px solid #e5e5e5;
-				width: 315px;
-				height: 208px;
-				position: relative;
-				background-repeat: no-repeat;
-				-webkit-background-size: cover;
-				background-size: cover;
-			}
-			
-		</style>
 		<ul class="path-gallery-metabox">
 			<li>
 				<label for="">Шоткод</label>
@@ -64,26 +45,37 @@ class Path_Gallery_Posts
 			<li>
 				<label for="gallery_path">Путь к папке с изображениями</label>
 				<input type="text" name="path_gallery[gallery_path]" value="<?php echo $gallery_path ?>" id="gallery_path" placeholder="пример: /images/"> 
-				<button type="button" class="btn btn-primary">выбрать на сервере</button>
+				<a href="#pg-filemanager" data-pg-action="open-filemanager">выбрать на сервере</a>
+				<div id="pg-filemanager" class="pg-filemanager">
+
+					<?php 
+					$site_path='/images/';
+					echo '<ul><li><a href="'.$dir.'"><i class="icon-folder-empty"></i> /images/</a> <button type="button" data-pg-action="add-path" data-pg-path="'.$site_path.'"><i class="icon-plus-circled"></i></button>';
+					echo pg_get_files_list($site_path);
+					echo "</li></ul>";
+					?>
+
+
+				</div>
+				
 			</li>
 			<?php if ($images): ?>
-				<li><h3>Список изображений</h3>
+				<hr>
+				<li><h3><?php _e( 'Image', 'path-gallery' ); ?></h3>
 					<ul class="path-gallery-images">
-
 						<?php foreach ($images as $key => $image): ?>
-							<li style="background-image:url(<?php echo $image ?>)"></li>
+							<li style="background-image:url(<?php echo $image ?>)">
+								<input type="hidden" name="path_gallery[image_data][<?php echo $key ?>][url]" value="<?php echo $image ?>">
+								<input type="text" placeholder="введите название" name="path_gallery[image_data][<?php echo $key ?>][title]" value="<?php echo $image_data[$key]['title'] ?>">
+								<input type="text" name="path_gallery[image_data][<?php echo $key ?>][signature]" value="<?php echo $image_data[$key]['signature'] ?>" placeholder="подпись внизу">
+							</li>
 						<?php endforeach ?>
-
-
-
 					</ul>
 				</li>
 			<?php endif ?>
 
 		</ul>
-		<?php
-
-	}
+		<?php }
 
 	public function save( $post_id ) {
 
@@ -121,7 +113,7 @@ class Path_Gallery_Posts
 		/* OK, все чисто, можно сохранять данные. */
 
 		// Очищаем поле input.
-		$pg_post_data=array_map('sanitize_text_field',$_POST['path_gallery']);
+		$pg_post_data=$_POST['path_gallery'];
 
 		if ($pg_post_data) {
 			foreach ($pg_post_data as $key => $pg_data) {

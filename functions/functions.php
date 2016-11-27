@@ -40,3 +40,54 @@ function checkValidFormat($file, $validFormat){
     }
     return false;
 }
+
+//получем список файлов и директорий по переданному пути
+function pg_get_files_list($site_path='/wp-content/uploads/')
+{
+    $dir  = $_SERVER['DOCUMENT_ROOT'].$site_path;
+    $files = scandir($dir,1);
+    $file_listing='';
+    if ($files) {
+        $file_listing.='<ul>';
+        foreach ($files as $file):
+            if (in_array($file,array('.','..'))) continue;
+        if (is_dir($dir.$file)) {
+            $file_listing.= '<li><a href="'.$site_path.$file.'/" title="'.__('click to get a list of nested directories','path-gallery').'" data-pg-action="get-directories"><i class="icon-folder-empty"></i>'.$file.'</a> <button type="button" data-pg-action="add-path" data-pg-path="'.$site_path.$file.'/"><i class="icon-plus-circled"></i></button></li>';
+        }else{
+            $file_ext=explode('.',$file);
+            if(in_array($file_ext[1],array(jpg,jpeg,png))){
+                $icon='<i class="icon-file-image"></i>';
+            }
+            $file_listing.= '<li>'.$icon.' '.$file.'</li>';
+        }
+        endforeach;
+        $file_listing.= "</ul>";
+    }
+    return $file_listing; 
+}
+
+function pg_thumbnail($path,array $args){
+    $args=wp_parse_args($args, array(
+        'width'=>300,
+        'height'=>160,
+        'q'=>100,
+        'crop'=>true
+        ));
+    $thumbnail=$path;
+    $image = wp_get_image_editor( $_SERVER['DOCUMENT_ROOT'].$path );
+    $file_name='thumb-'.$args['width'].'x'.$args['height'].'-'.basename($path);
+    $thumbnail_url='/cache/'.$file_name;
+    
+    //  если миниатюра существует, то просто возвращаем её
+    if (file_exists($_SERVER['DOCUMENT_ROOT'].$thumbnail_url))   return $thumbnail_url;
+
+    //  если всё-таки нет миниатюры, генерируем её используя класс WP_Image_Editor
+    if ( ! is_wp_error($image ) ) {
+        $image->resize($args['width'],$args['height'],$args['crop']);
+        $image->set_quality($args['q']);
+        $file_name='thumb-'.$args['width'].'x'.$args['height'].'-'.basename($path);
+        $thumbnail='/cache/'.$file_name;
+        $image->save( $_SERVER['DOCUMENT_ROOT'].$thumbnail );
+    }
+    return $thumbnail;
+}

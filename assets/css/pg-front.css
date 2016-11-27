@@ -1,0 +1,30 @@
+.pg-gallery-front{
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-pack: justify;
+	-webkit-justify-content: space-between;
+	-ms-flex-pack: justify;
+	justify-content: space-between;
+	-webkit-flex-flow: row wrap;
+	-ms-flex-flow: row wrap;
+	flex-flow: row wrap;
+}
+.pg-gallery-front .signature {
+padding: 7px 14px;
+    text-align: center;
+    font-size: 12px;
+    border: 1px solid #ccc;
+    min-height: 44px;
+    background: rgb(230, 230, 230);
+    margin: 0;
+    color: #F44336;
+    text-transform: uppercase;
+    border-bottom: 2px solid #c3c3c3;
+    font-weight: bold;
+    font-family: tahoma;
+    letter-spacing: .01em;
+    border-top: 0;
+    line-height: 1.2;
+}
