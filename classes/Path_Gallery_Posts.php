@@ -32,6 +32,8 @@ class Path_Gallery_Posts
 	{
 		// Используем nonce для верификации
 		wp_nonce_field( plugin_basename(__FILE__), 'path_gallery_box_nonce' );
+		$settings=new Path_Gallery_Settings;
+		$site_path=$settings->get_settings('galleries_path');
 		$gallery_path=get_post_meta($post->ID,'gallery_path',1);
 		$image_data=get_post_meta($post->ID,'image_data',0);
 		$image_data=!empty($image_data)?$image_data[0]:array();
@@ -40,7 +42,7 @@ class Path_Gallery_Posts
 		<ul class="path-gallery-metabox">
 			<li>
 				<label for="">Шоткод</label>
-				<code>[path-gallery id="<?php echo $post->ID ?>"]</code></td>
+				<input type="text" name="shortcode" value='[path-gallery id="<?php echo $post->ID ?>"]' readonly>
 			</li>
 			<li>
 				<label for="gallery_path">Путь к папке с изображениями</label>
@@ -49,8 +51,7 @@ class Path_Gallery_Posts
 				<div id="pg-filemanager" class="pg-filemanager">
 
 					<?php 
-					$settings=new Path_Gallery_Settings;
-					$site_path=$settings->settings['galleries_path'];
+					
 					echo '<ul><li><a href="'.$dir.'"><i class="icon-folder-empty"></i> '.$site_path.'</a> <button type="button" data-pg-action="add-path" data-pg-path="'.$site_path.'"><i class="icon-plus-circled"></i></button>';
 					echo pg_get_files_list($site_path);
 					echo "</li></ul>";
@@ -78,7 +79,7 @@ class Path_Gallery_Posts
 		</ul>
 		<?php }
 
-	public function save( $post_id ) {
+		public function save( $post_id ) {
 
 		/*
 		 * Нам нужно сделать проверку, чтобы убедится что запрос пришел с нашей страницы, 

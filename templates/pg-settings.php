@@ -7,7 +7,7 @@
 					<label for="ispmanager_path"><?php _e('The main folder of galleries', 'path-gallery' ); ?></label>
 				</th>
 				<td>
-					<input type="text" name="path_gallery[galleries_path]" class="regular-text" id="galleries_path" placeholder="<?php _e('for example /images/', 'path-gallery' ); ?>" value="<?php echo $this->settings['galleries_path'] ?>">
+					<input type="text" name="pg_settings[galleries_path]" class="regular-text" id="galleries_path" placeholder="<?php _e('for example /images/', 'path-gallery' ); ?>" value="<?php echo $settings['galleries_path'] ?>">
 				</td>
 			</tr>
 		</table>

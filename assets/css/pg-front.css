@@ -12,14 +12,14 @@
 	flex-flow: row wrap;
 }
 .pg-gallery-front .signature {
-	padding: 7px 14px;
+	padding: 12px;
 	text-align: center;
 	font-size: 12px;
-	border: 1px solid #ccc;
-	min-height: 44px;
-	background: rgb(230, 230, 230);
+	/* border: 1px solid #ccc; */
+	min-height: 40px;
+	background: #555;
 	margin: 0;
-	color: #F44336;
+	color: #ffffff;
 	text-transform: uppercase;
 	border-bottom: 2px solid #c3c3c3;
 	font-weight: bold;
@@ -27,4 +27,15 @@
 	letter-spacing: .01em;
 	border-top: 0;
 	line-height: 1.2;
+}
+@media (max-width:1200px) {
+	.pg-gallery-front {
+		-webkit-box-pack: start;
+		-webkit-justify-content: flex-start;
+		-ms-flex-pack: start;
+		justify-content: flex-start;
+	}
+	.pg-gallery-front .pg-col {
+		margin-right: 10px;
+	}
 }

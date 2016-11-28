@@ -15,12 +15,11 @@ class Path_Gallery_Shortcodes
 			'id' =>0,
 			'width'=>'278',
 			'height'=>'193',
-			'margin_bottom'=>'4px',
+			'margin_bottom'=>'4',
 			), $atts );
 		$out='';
 		$data=get_post_meta( $atts['id'],'image_data',0);
 		$images=$data[0];
-		
 		if ($images) {
 			ob_start();
 			echo '<style>';
@@ -29,9 +28,10 @@ class Path_Gallery_Shortcodes
 			-webkit-flex: 0 0 '.$atts['width'].'px;
 			-ms-flex: 0 0 '.$atts['width'].'px;
 			flex: 0 0 '.$atts['width'].'px;
-			margin-bottom: '.$atts['margin_bottom'].'
-			';
-			echo '}';
+			margin-bottom: '.$atts['margin_bottom'].'px;}
+			.pg-gallery-front .wrap img{
+				height:	'.$atts['height'].'px;
+			}';
 			echo '</style>';
 			echo '<div class="pg-gallery-front">';
 			foreach ($images as $key => $image) {
@@ -40,21 +40,21 @@ class Path_Gallery_Shortcodes
 				echo '<div class="pg-col">';
 				echo '<div class="wrap">
 				<a href="'.$image['url'].'" data-lightbox="roadtrip" title="'.$image['title'].'">
-				<img src="'.$thumbnail.'" alt="'.$image['title'].'">
+					<img src="'.$thumbnail.'" alt="'.$image['title'].'">
 				</a>
 				<div class="signature">'.$signature.'</div>
-				</div>';
-				echo '</div>';
-			}
+			</div>';
 			echo '</div>';
-			$out=ob_get_clean();
-
 		}
-		return $out;
+		echo '</div>';
+		$out=ob_get_clean();
 
 	}
-	
-	
+	return $out;
 
-	
+}
+
+
+
+
 }
