@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-11-28 07:29+0000\n"
+"POT-Creation-Date: 2016-11-28 07:30+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: \n"
@@ -15,7 +15,6 @@ msgstr ""
 "X-Generator: Loco - https://localise.biz/"
 
 #: path-gallery.php:90 path-gallery.php:90
-msgctxt "Настройки"
 msgid "Settings"
 msgstr ""
 
@@ -24,17 +23,14 @@ msgid "Галереи"
 msgstr ""
 
 #: classes/Path_Gallery_Posts.php:29
-msgctxt "Настройки галереи"
 msgid "Gallery settings"
 msgstr ""
 
 #: classes/Path_Gallery_Posts.php:64
-msgctxt "Изображения"
 msgid "Image"
 msgstr ""
 
 #: functions/functions.php:55
-msgctxt "нажмите чтобы получить под-директории"
 msgid "click to get a list of nested directories"
 msgstr ""
 
@@ -43,8 +39,6 @@ msgid "Path Gallery"
 msgstr ""
 
 #. Description of the plugin
-msgctxt ""
-"Этот плагин позволяет создать галерею изображений из любой папки сайта."
 msgid ""
 "The plugin will help in the creation of any online store without changing "
 "your template."
@@ -55,7 +49,6 @@ msgid "https://github.com/karakushan/path-gallery"
 msgstr ""
 
 #. Author of the plugin
-msgctxt "Виталий Каракушан"
 msgid "Vitaliy Karakushan"
 msgstr ""
 

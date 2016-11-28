@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Path Gallery\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-11-27 11:59+0000\n"
-"PO-Revision-Date: 2016-11-27 12:01+0000\n"
+"POT-Creation-Date: 2016-11-28 07:30+0000\n"
+"PO-Revision-Date: 2016-11-28 07:31+0000\n"
 "Last-Translator: Виталий <karakushan@gmail.com>\n"
 "Language-Team: Russian\n"
 "Language: ru-RU\n"
@@ -14,17 +14,37 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Loco - https://localise.biz/"
 
+#: path-gallery.php:90 path-gallery.php:90
+msgid "Settings"
+msgstr "Настройки"
+
 #: classes/Path_Gallery_Posts.php:17
 msgid "Галереи"
+msgstr ""
+
+#: classes/Path_Gallery_Posts.php:64
+msgid "Image"
+msgstr "Изображения"
+
+#: functions/functions.php:55
+msgid "click to get a list of nested directories"
+msgstr "нажмите, чтобы получить поддиректории"
+
+#. Name of the plugin
+msgid "Path Gallery"
+msgstr ""
+
+#. URI of the plugin
+msgid "https://github.com/karakushan/path-gallery"
+msgstr ""
+
+#. Author URI of the plugin
+msgid "https://github.com/karakushan"
 msgstr ""
 
 #: classes/Path_Gallery_Posts.php:29
 msgid "Gallery settings"
 msgstr "Настройки галереи"
-
-#. Name of the plugin
-msgid "Path Gallery"
-msgstr ""
 
 #. Description of the plugin
 msgid ""
@@ -33,14 +53,6 @@ msgid ""
 msgstr ""
 "Этот плагин позволяет создать галерею изображений из любой папки на сервере."
 
-#. URI of the plugin
-msgid "https://github.com/karakushan/path-gallery"
-msgstr ""
-
 #. Author of the plugin
 msgid "Vitaliy Karakushan"
 msgstr "Виталий Каракушан"
-
-#. Author URI of the plugin
-msgid "https://github.com/karakushan"
-msgstr ""

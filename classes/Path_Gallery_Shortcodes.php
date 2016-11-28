@@ -40,7 +40,7 @@ class Path_Gallery_Shortcodes
 				$signature=!empty($image['signature']) ? $image['signature']: $image['title'];
 				echo '<div class="pg-col">';
 				echo '<div class="wrap">
-				<a href="'.$image['url'].'" data-lightbox="roadtrip">
+				<a href="'.$image['url'].'" data-lightbox="roadtrip" title="'.$image['title'].'">
 				<img src="'.$thumbnail.'" alt="'.$image['title'].'">
 				</a>
 				<div class="signature">'.$signature.'</div>

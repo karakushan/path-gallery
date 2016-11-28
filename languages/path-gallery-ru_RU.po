@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Path Gallery\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-11-28 07:30+0000\n"
-"PO-Revision-Date: 2016-11-28 07:31+0000\n"
+"POT-Creation-Date: 2016-11-28 08:44+0000\n"
+"PO-Revision-Date: 2016-11-28 08:45+0000\n"
 "Last-Translator: Виталий <karakushan@gmail.com>\n"
 "Language-Team: Russian\n"
 "Language: ru-RU\n"
@@ -14,21 +14,29 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Loco - https://localise.biz/"
 
-#: path-gallery.php:90 path-gallery.php:90
-msgid "Settings"
-msgstr "Настройки"
-
 #: classes/Path_Gallery_Posts.php:17
 msgid "Галереи"
 msgstr ""
 
-#: classes/Path_Gallery_Posts.php:64
-msgid "Image"
-msgstr "Изображения"
+#: classes/Path_Gallery_Settings.php:38
+msgid "Settings updated"
+msgstr "Настройки обновились"
 
-#: functions/functions.php:55
-msgid "click to get a list of nested directories"
-msgstr "нажмите, чтобы получить поддиректории"
+#: templates/pg-settings.php:2
+msgid "Settings galleries"
+msgstr "Настройки галерей"
+
+#: templates/pg-settings.php:7
+msgid "The main folder of galleries"
+msgstr "Главная папка галерей"
+
+#: templates/pg-settings.php:10
+msgid "for example /images/"
+msgstr "например: /images/"
+
+#: templates/pg-settings.php:16
+msgid "Save"
+msgstr "Сохранить"
 
 #. Name of the plugin
 msgid "Path Gallery"
@@ -45,6 +53,18 @@ msgstr ""
 #: classes/Path_Gallery_Posts.php:29
 msgid "Gallery settings"
 msgstr "Настройки галереи"
+
+#: classes/Path_Gallery_Posts.php:65
+msgid "Image"
+msgstr "Изображения"
+
+#: classes/Path_Gallery_Settings.php:22 classes/Path_Gallery_Settings.php:22
+msgid "Settings"
+msgstr "Настройки"
+
+#: functions/functions.php:55
+msgid "click to get a list of nested directories"
+msgstr "нажмите, чтобы получить поддиректории"
 
 #. Description of the plugin
 msgid ""
