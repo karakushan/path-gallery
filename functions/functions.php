@@ -66,7 +66,14 @@ function pg_get_files_list($site_path='/wp-content/uploads/')
     return $file_listing; 
 }
 
+/**
+ * создаёт миниатюру изображения с помощью класса WP_Image_Editor
+ * @param  строка $path  - путь к изображению
+ * @param  массив  $args  - дополнительные агрументы 
+ * @return строка       возвращает урл миниатюры
+ */
 function pg_thumbnail($path,array $args){
+    $settings=new Path_Gallery_Settings;
     $args=wp_parse_args($args, array(
         'width'=>300,
         'height'=>160,
@@ -76,7 +83,7 @@ function pg_thumbnail($path,array $args){
     $thumbnail=$path;
     $image = wp_get_image_editor( $_SERVER['DOCUMENT_ROOT'].$path );
     $file_name='thumb-'.$args['width'].'x'.$args['height'].'-'.basename($path);
-    $thumbnail_url='/cache/'.$file_name;
+    $thumbnail_url=$settings->settings['galleries_path'].'cache/'.$file_name;
     
     //  если миниатюра существует, то просто возвращаем её
     if (file_exists($_SERVER['DOCUMENT_ROOT'].$thumbnail_url))   return $thumbnail_url;
@@ -86,8 +93,7 @@ function pg_thumbnail($path,array $args){
         $image->resize($args['width'],$args['height'],$args['crop']);
         $image->set_quality($args['q']);
         $file_name='thumb-'.$args['width'].'x'.$args['height'].'-'.basename($path);
-        $thumbnail='/cache/'.$file_name;
-        $image->save( $_SERVER['DOCUMENT_ROOT'].$thumbnail );
+        $image->save( $_SERVER['DOCUMENT_ROOT'].$thumbnail_url );
     }
     return $thumbnail;
 }

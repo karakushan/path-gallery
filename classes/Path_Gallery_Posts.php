@@ -49,8 +49,9 @@ class Path_Gallery_Posts
 				<div id="pg-filemanager" class="pg-filemanager">
 
 					<?php 
-					$site_path='/images/';
-					echo '<ul><li><a href="'.$dir.'"><i class="icon-folder-empty"></i> /images/</a> <button type="button" data-pg-action="add-path" data-pg-path="'.$site_path.'"><i class="icon-plus-circled"></i></button>';
+					$settings=new Path_Gallery_Settings;
+					$site_path=$settings->settings['galleries_path'];
+					echo '<ul><li><a href="'.$dir.'"><i class="icon-folder-empty"></i> '.$site_path.'</a> <button type="button" data-pg-action="add-path" data-pg-path="'.$site_path.'"><i class="icon-plus-circled"></i></button>';
 					echo pg_get_files_list($site_path);
 					echo "</li></ul>";
 					?>

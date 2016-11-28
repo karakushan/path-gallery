@@ -65,6 +65,7 @@ if (!class_exists('Path_Gallery_Init')) {
      add_action( 'plugins_loaded', array( $this, 'get_instance' ) );
      add_action( 'admin_enqueue_scripts', array( $this,'gallery_path_scripts_admin') );
      add_action( 'wp_enqueue_scripts', array( $this,'gallery_path_scripts_front') );
+  
 
  }
  function gallery_path_scripts_admin() {
@@ -84,7 +85,8 @@ public static function get_instance() {
     load_plugin_textdomain('path-gallery',false, dirname( plugin_basename( __FILE__ ) ) . '/languages/');
     return self::$instance;
 }
+
 }
 }
-new Path_Gallery_Init;
+
 
