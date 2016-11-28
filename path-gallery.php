@@ -30,15 +30,13 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 if ( ! defined( 'ABSPATH' ) ) exit;
 
 // устанавливаем константы
-@define('BFITHUMB_UPLOAD_DIR','images');
 @define('PG_PLUGIN_DIR', plugin_dir_path(__FILE__));
 @define('PG_PLUGIN_URL', plugin_dir_url(__FILE__));
 @define('PG_PLUGIN_VERSION', '1.0');
 
 // подключаем файлы
 require_once 'functions/functions.php';
-// подключаем библиотеки
-require_once 'lib/BFI_Thumb.php';
+
 // подключаем классы
 require_once 'classes/Path_Gallery_Settings.php';
 require_once 'classes/Path_Gallery_Posts.php';

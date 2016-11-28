@@ -13,7 +13,6 @@ class Path_Gallery_Shortcodes
 	function path_gallery_shortcode( $atts ) {
 		$atts = shortcode_atts( array(
 			'id' =>0,
-			'col'=>3,
 			'width'=>'278',
 			'height'=>'193',
 			'margin_bottom'=>'4px',
@@ -21,7 +20,7 @@ class Path_Gallery_Shortcodes
 		$out='';
 		$data=get_post_meta( $atts['id'],'image_data',0);
 		$images=$data[0];
-		$col_bootstrap=12/$atts['col'];
+		
 		if ($images) {
 			ob_start();
 			echo '<style>';
