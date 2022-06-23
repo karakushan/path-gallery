@@ -81,7 +81,6 @@ function pg_thumbnail($path,array $args){
         'crop'=>true
         ));
     $thumbnail=$path;
-    $image = wp_get_image_editor( $_SERVER['DOCUMENT_ROOT'].$path );
     $file_name='thumb-'.$args['width'].'x'.$args['height'].'-'.basename($path);
     $thumbnail_url=$settings->settings['galleries_path'].'cache/'.$file_name;
     
@@ -89,6 +88,7 @@ function pg_thumbnail($path,array $args){
     if (file_exists($_SERVER['DOCUMENT_ROOT'].$thumbnail_url))   return $thumbnail_url;
 
     //  если всё-таки нет миниатюры, генерируем её используя класс WP_Image_Editor
+    $image = wp_get_image_editor( $_SERVER['DOCUMENT_ROOT'].$path );
     if ( ! is_wp_error($image ) ) {
         $image->resize($args['width'],$args['height'],$args['crop']);
         $image->set_quality($args['q']);
